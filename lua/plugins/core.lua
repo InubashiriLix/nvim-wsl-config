@@ -3,6 +3,8 @@ return {
     -- { "ellisonleao/gruvbox.nvim" },
     -- { "tomasr/molokai" },
     { "ayu-theme/ayu-vim" },
+    
+
     -- Configure LazyVim to load gruvbox
     {
         "LazyVim/LazyVim",
