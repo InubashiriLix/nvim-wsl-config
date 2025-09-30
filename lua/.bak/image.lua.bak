@@ -1,0 +1,18 @@
+-- lua/plugins/image.lua
+return {
+    "3rd/image.nvim",
+    build = false,
+    opts = {
+        backend = "sixel", -- 你现在这条路线
+        processor = "magick_cli",
+        -- ↓ 这些都是“少干扰、少重绘”的关键
+        editor_only_render_when_focused = true, -- 非焦点窗口不渲染
+        only_render_image_at_cursor = true, -- 只渲染光标附近一张，显著减少撕裂
+        window_overlap_clear_enabled = true, -- 和状态栏/浮窗重叠时自动清除
+        max_height = 18, -- 限高，避免把下面的行“盖住一片”
+        max_height_window_percentage = 45,
+        integrations = {
+            neorg = { enabled = true, clear_in_insert_mode = true },
+        },
+    },
+}

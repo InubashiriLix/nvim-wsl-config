@@ -2,17 +2,17 @@ return {
     -- add gruvbox
     -- { "ellisonleao/gruvbox.nvim" },
     -- { "tomasr/molokai" },
-    { "ayu-theme/ayu-vim" },
-    
+    -- { "ayu-theme/ayu-vim" },
 
     -- Configure LazyVim to load gruvbox
     {
         "LazyVim/LazyVim",
         opts = {
+            colorscheme = "tokyonight",
             -- colorscheme = "",
             -- colorscheme = "gruvbox",
             -- colorscheme = "molokai",
-            colorscheme = "ayu",
+            -- colorscheme = "ayu",
         },
     },
 
@@ -59,18 +59,19 @@ return {
         },
     },
 
-    -- add pyright to lspconfig
-    {
-        "neovim/nvim-lspconfig",
-        ---@class PluginLspOpts
-        opts = {
-            ---@type lspconfig.options
-            servers = {
-                -- pyright will be automatically installed with mason and loaded with lspconfig
-                pyright = {},
-            },
-        },
-    },
+    -- -- add pyright to lspconfig
+    -- NOTE: the pyrigh is in the plugin/lsp
+    -- {
+    --     "neovim/nvim-lspconfig",
+    --     ---@class PluginLspOpts
+    --     opts = {
+    --         ---@type lspconfig.options
+    --         servers = {
+    --             -- pyright will be automatically installed with mason and loaded with lspconfig
+    --             pyright = {},
+    --         },
+    --     },
+    -- },
 
     -- add tsserver and setup with typescript.nvim instead of lspconfig
     {
@@ -173,14 +174,14 @@ return {
     },
 
     -- use mini.starter instead of alpha
-    { import = "lazyvim.plugins.extras.ui.mini-starter" },
+    -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
     -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
     { import = "lazyvim.plugins.extras.lang.json" },
 
     -- add any tools you want to have installed below
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = {
             ensure_installed = {
                 "stylua",

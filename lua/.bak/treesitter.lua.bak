@@ -9,6 +9,7 @@ return {
         init = function()
             local install = require("nvim-treesitter.install")
             install.prefer_git = false -- 用 tarball 下载，成功率更高
+            -- 不要再设置 install.compilers（已废弃）；要选编译器用 CC 环境变量
         end,
         opts = {
             ensure_installed = {
