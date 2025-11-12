@@ -1,32 +1,18 @@
 return {
-    "nvim-neorg/neorg",
-
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    lazy = false,
-    version = "*",
-    config = function()
-        require("neorg").setup({
+    {
+        "nvim-neorg/neorg",
+        ft = "norg",
+        build = ":Neorg sync-parsers", -- 关键：同步 norg 相关解析器
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = {
             load = {
                 ["core.defaults"] = {},
                 ["core.concealer"] = {},
-                ["core.dirman"] = {
-                    config = {
-                        workspaces = {
-                            notes = "~/notes",
-                        },
-                        default_workspace = "notes",
-                    },
-                },
+                ["core.dirman"] = { config = { workspaces = { notes = "~/notes" } } },
             },
-        })
-
-        -- Set foldlevel and conceallevel for Neorg buffers only
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = "norg",
-            callback = function()
-                vim.wo.foldlevel = 99
-                vim.wo.conceallevel = 2
-            end,
-        })
-    end,
+        },
+    },
 }

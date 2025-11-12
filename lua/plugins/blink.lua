@@ -1,87 +1,53 @@
--- lua/plugins/blink_super_tab.lua
 return {
-    -- 1) Blink: Super-Tab 手感 + 稳定设置
-    {
-        "saghen/blink.cmp",
-        -- 如果你用的是锁版本，改成对应 tag/commit
-        version = "*",
-        opts = {
-            -- 推荐先关：snippet 中自动弹列表，避免误选
-            completion = {
-                trigger = { show_in_snippet = true },
-                list = {
-                    -- snippet 中不预选，避免 <Tab> 误接受
-                    selection = {
-                        preselect = function(ctx)
-                            return not require("blink.cmp").snippet_active({ direction = 1 })
-                        end,
-                    },
-                },
-            },
+    "saghen/blink.cmp",
+    -- optional: provides snippets for the snippet source
+    dependencies = { "rafamadriz/friendly-snippets" },
 
-            -- 你来接管按键（不使用预设）
-            keymap = {
-                preset = "none",
+    -- use a release tag to download pre-built binaries
+    version = "1.*",
+    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+    -- build = 'cargo build --release',
+    -- If you use nix, you can build from source using latest nightly rust with:
+    -- build = 'nix run .#build-plugin',
 
-                ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-                ["<C-e>"] = { "hide", "fallback" },
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+        -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+        -- 'super-tab' for mappings similar to vscode (tab to accept)
+        -- 'enter' for enter to accept
+        -- 'none' for no mappings
+        --
+        -- All presets have the following mappings:
+        -- C-space: Open menu or open docs if already open
+        -- C-n/C-p or Up/Down: Select next/previous item
+        -- C-e: Hide menu
+        -- C-k: Toggle signature help (if signature.enabled = true)
+        --
+        -- See :h blink-cmp-config-keymap for defining your own keymap
+        keymap = { preset = "super-tab" },
 
-                -- Super-Tab：候选可见→选中并接受；否则片段跳转；仍不行→原生 <Tab>
-                ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
-                ["<S-Tab>"] = { "snippet_backward", "fallback" },
-
-                ["<Up>"] = { "select_prev", "fallback" },
-                ["<Down>"] = { "select_next", "fallback" },
-                ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
-                ["<C-n>"] = { "select_next", "fallback_to_mappings" },
-
-                ["<C-b>"] = { "scroll_documentation_up", "fallback" },
-                ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-                ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
-            },
+        appearance = {
+            -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+            -- Adjusts spacing to ensure icons are aligned
+            nerd_font_variant = "mono",
         },
-    },
 
-    -- 3) LSP 侧的稳态化：关 inline_completion / inlay hints；统一 offsetEncoding；可选关 semantic tokens
-    {
-        "neovim/nvim-lspconfig",
-        init = function()
-            -- 关内置 inline completion（0.10+）
-            pcall(function()
-                vim.lsp.inline_completion.enable(false)
-            end)
+        -- (Default) Only show the documentation popup when manually triggered
+        completion = { documentation = { auto_show = false } },
 
-            -- 默认关 inlay hints（热点问题，你遇到过列越界）
-            vim.lsp.inlay_hint.enable(false)
-
-            -- 统一 offsetEncoding，减少坐标换算错位（clangd/rust/ts 常用 utf-16）
-            local caps = vim.lsp.protocol.make_client_capabilities()
-            caps.offsetEncoding = { "utf-16" }
-
-            -- 挂到全局，供各 server 复用
-            vim.g.__blink_super_tab_caps = caps
-
-            -- LspAttach 时做一些保护：必要时关 semantic tokens
-            vim.api.nvim_create_autocmd("LspAttach", {
-                callback = function(args)
-                    local client = vim.lsp.get_client_by_id(args.data.client_id)
-                    if not client then
-                        return
-                    end
-
-                    -- 如需彻底规避相关渲染竞态，可解开下一行
-                    -- client.server_capabilities.semanticTokensProvider = nil
-                end,
-            })
-        end,
-        opts = {
-            -- 如果你用 LazyVim 的 lspconfig 自动注册，这里把 capabilities 注入
-            setup = {
-                -- 对所有 server 注入统一 capabilities
-                ["*"] = function(server, opts)
-                    opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities or {}, vim.g.__blink_super_tab_caps or {})
-                end,
-            },
+        -- Default list of enabled providers defined so that you can extend it
+        -- elsewhere in your config, without redefining it, due to `opts_extend`
+        sources = {
+            default = { "lsp", "path", "snippets", "buffer" },
         },
+
+        -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+        -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+        -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+        --
+        -- See the fuzzy documentation for more information
+        fuzzy = { implementation = "prefer_rust_with_warning" },
     },
+    opts_extend = { "sources.default" },
 }
