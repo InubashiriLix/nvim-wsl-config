@@ -7,3 +7,6 @@
 -- end, { desc = "Sidekick Toggle (no Ctrl)" })
 
 -- vim.keymap.set("n", "<leader>ai", "<cmd>sidekick cli toggle<CR>", { desc = "Sidekick Toggle" })
+--
+vim.keymap.set("n", "<F6>", "<cmd>Sidekick nes disable<CR>", { desc = "disable side kick nes" })
+vim.keymap.set("n", "<F7>", "<cmd>Sidekick nes enable<CR>", { desc = "enable side kick nes" })
