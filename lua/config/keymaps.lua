@@ -7,6 +7,29 @@
 -- end, { desc = "Sidekick Toggle (no Ctrl)" })
 
 -- vim.keymap.set("n", "<leader>ai", "<cmd>sidekick cli toggle<CR>", { desc = "Sidekick Toggle" })
---
-vim.keymap.set("n", "<F6>", "<cmd>Sidekick nes disable<CR>", { desc = "disable side kick nes" })
-vim.keymap.set("n", "<F7>", "<cmd>Sidekick nes enable<CR>", { desc = "enable side kick nes" })
+vim.keymap.set("n", "<leader>aso", function()
+    vim.cmd("Sidekick nes enable")
+    vim.notify("Sidekick NES enabled", vim.log.levels.INFO, {
+        title = "Sidekick",
+        icon = "🤖",
+    })
+end, { desc = "Sidekick NES Enable" })
+
+vim.keymap.set("n", "<leader>asd", function()
+    vim.cmd("Sidekick nes disable")
+    vim.notify("Sidekick NES disabled", vim.log.levels.INFO, {
+        title = "Sidekick",
+        icon = "🛑",
+    })
+end, { desc = "Sidekick NES Disable" })
+
+-- enable and disable theme (I use tokyonight now) transparent
+
+vim.keymap.set("n", "<leader>u", function()
+    local current_state = vim.g.toggle_tokyonight_transparent()
+    vim.cmd("colorscheme tokyonight") -- update the colorscheme to apply the change
+    vim.notify("Tokyonight transparent mode" .. (current_state and " enabled" or " disabled"), vim.log.levels.INFO, {
+        title = "Tokyonight Theme",
+        icon = "🎨",
+    })
+end, { desc = "Toggle Tokyonight Theme" })
