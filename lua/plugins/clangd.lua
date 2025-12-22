@@ -1,31 +1,61 @@
 return {
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        clangd = { mason = true, cmd = { "clangd", "--header-insertion=never", "--compile-commands-dir=build" } },
-        -- clangd = {
-        --     mason = false,
-        --     cmd = {
-        --         "clangd",
-        --         "--background-index",
-        --         "--suggest-missing-includes",
-        --         "--header-insertion=never",
-        --         "--compile-commands-dir=build",
-        --     },
-        --     root_dir = require("lspconfig.util").root_pattern("CMakeLists.txt", ".git"),
-        --     includePath = {
-        --         "/opt/ros/jazzy/include/",
-        --         "/usr/include/c++/11/",
-        --         "/usr/include/aarch64-linux-gnu/c++/11/",
-        --         "/usr/include/c++/11/backward/",
-        --         "/usr/lib/gcc/aarch64-linux-gnu/11/include/",
-        --         "/usr/local/include/",
-        --         "/usr/include/aarch64-linux-gnu/",
-        --         "/usr/include/",
-        --     },
-        -- },
-      },
+    {
+        "neovim/nvim-lspconfig",
+        opts = {
+            servers = {
+                clangd = {
+                    mason = true,
+                    cmd = {
+                        "clangd",
+                        "--background-index",
+                        "--clang-tidy",
+                        "--header-insertion=iwyu",
+                        "--completion-style=detailed",
+                        "--function-arg-placeholders",
+                        "--fallback-style=llvm",
+                        "--query-driver=/usr/bin/g++,/usr/bin/c++,/usr/bin/*-g++,/usr/bin/*-gcc",
+                    },
+                    cmd_env = {
+                        LC_ALL = "C",
+                        LANG = "C",
+                    },
+                    init_options = {
+                        usePlaceholders = true,
+                        completeUnimported = true,
+                        clangdFileStatus = true,
+                    },
+                },
+            },
+        },
     },
-  },
+    {
+        "p00f/clangd_extensions.nvim",
+        lazy = true,
+        config = function() end,
+        opts = {
+            inlay_hints = {
+                inline = false,
+            },
+            ast = {
+                --These require codicons (https://github.com/microsoft/vscode-codicons)
+                role_icons = {
+                    type = "",
+                    declaration = "",
+                    expression = "",
+                    specifier = "",
+                    statement = "",
+                    ["template argument"] = "",
+                },
+                kind_icons = {
+                    Compound = "",
+                    Recovery = "",
+                    TranslationUnit = "",
+                    PackExpansion = "",
+                    TemplateTypeParm = "",
+                    TemplateTemplateParm = "",
+                    TemplateParamObject = "",
+                },
+            },
+        },
+    },
 }
