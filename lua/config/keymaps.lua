@@ -71,7 +71,7 @@ vim.keymap.set("n", "<leader><F7>", function()
     local handle = io.popen("find . -maxdepth 3 -name 'CMakeLists.txt'")
     -- if have, then can run the CMakeBuild Command
     if handle:read("*a") ~= "" then
-        vim.cmd("CMakeCloseExecutor")
+        vim.cmd("CMakeRunCurrentFile")
     else
         vim.notify("No CMakeLists.txt found in current directory", vim.log.levels.WARN, {
             title = "CMake-Tools",
