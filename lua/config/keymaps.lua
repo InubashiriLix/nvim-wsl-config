@@ -33,3 +33,49 @@ vim.keymap.set("n", "<leader>u", function()
         icon = "🎨",
     })
 end, { desc = "Toggle Tokyonight Theme" })
+
+vim.keymap.set("n", "<leader><F5>", function()
+    -- find is current dir contains any CMakeLists.txt file
+    local handle = io.popen("find . -maxdepth 3 -name 'CMakeLists.txt'")
+    -- if have, then can run the CMakeBuild Command
+    if handle:read("*a") ~= "" then
+        vim.cmd("CMakeBuild")
+        vim.notify("CMake Build executed", vim.log.levels.INFO, {
+            title = "CMake",
+            icon = "🛠️",
+        })
+    else
+        vim.notify("No CMakeLists.txt found in current directory", vim.log.levels.WARN, {
+            title = "CMake-Tools",
+            icon = "⚠️",
+        })
+    end
+end, { desc = "CMakeRun Current Proj" })
+
+vim.keymap.set("n", "<leader><F6>", function()
+    -- find is current dir contains any CMakeLists.txt file
+    local handle = io.popen("find . -maxdepth 3 -name 'CMakeLists.txt'")
+    -- if have, then can run the CMakeBuild Command
+    if handle:read("*a") ~= "" then
+        vim.cmd("CMakeRun")
+    else
+        vim.notify("No CMakeLists.txt found in current directory", vim.log.levels.WARN, {
+            title = "CMake-Tools",
+            icon = "⚠️",
+        })
+    end
+end, { desc = "CMakeRun Current Proj" })
+
+vim.keymap.set("n", "<leader><F7>", function()
+    -- find is current dir contains any CMakeLists.txt file
+    local handle = io.popen("find . -maxdepth 3 -name 'CMakeLists.txt'")
+    -- if have, then can run the CMakeBuild Command
+    if handle:read("*a") ~= "" then
+        vim.cmd("CMakeCloseExecutor")
+    else
+        vim.notify("No CMakeLists.txt found in current directory", vim.log.levels.WARN, {
+            title = "CMake-Tools",
+            icon = "⚠️",
+        })
+    end
+end, { desc = "CMake Close Executor" })
