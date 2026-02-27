@@ -3,7 +3,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
         signs = {
-            add = { text = "+" },
+            -- add = { text = "+" },
             change = { text = "~" },
             delete = { text = "_" },
             topdelete = { text = "‾" },
@@ -16,7 +16,7 @@ return {
         current_line_blame_opts = {
             virt_text = true,
             virt_text_pos = "eol",
-            delay = 800, -- 光标停 800ms 再显示
+            delay = 800,
             ignore_whitespace = false,
         },
 
