@@ -32,7 +32,7 @@ return {
                 org_ellipsis = "...",
                 win_split_mode = "vertical",
                 org_hide_leading_stars = false,
-                org_adapt_indentaion = false,
+                org_adapt_indentation = false,
                 org_startup_indented = true,
                 org_id_link_to_org_use_id = true,
                 org_use_tag_inheritance = true,
