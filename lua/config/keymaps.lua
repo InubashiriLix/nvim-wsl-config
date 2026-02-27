@@ -1,10 +1,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
---
--- NOTE: sidekick CLI toogle for sidekick.nvim
--- vim.keymap.set({ "n", "i", "x", "t" }, "<leader>ai", function()
---     require("sidekick.cli").toggle()
--- end, { desc = "Sidekick Toggle (no Ctrl)" })
+
+-- set 'jk', 'jj', 'kk', 'kj' to exit insert mode
+vim.keymap.set("i", "<Esc>", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode" })
+vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode" })
+vim.keymap.set("i", "jj", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode" })
+vim.keymap.set("i", "kk", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode" })
+vim.keymap.set("i", "kj", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode" })
 
 -- vim.keymap.set("n", "<leader>ai", "<cmd>sidekick cli toggle<CR>", { desc = "Sidekick Toggle" })
 vim.keymap.set("n", "<leader>aso", function()
