@@ -20,5 +20,5 @@ return {
     },
     cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
 
-    vim.keymap.set("n", "<leader>cv", "<cmd>CsvViewToggle<CR>", { desc = "Toggle CSV View" }),
+    vim.keymap.set("n", "<leader>uv", "<cmd>CsvViewToggle<CR>", { desc = "Toggle CSV View" }),
 }
