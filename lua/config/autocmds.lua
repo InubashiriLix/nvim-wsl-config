@@ -22,3 +22,11 @@ vim.api.nvim_create_autocmd("FileChangedShell", {
         vim.cmd("silent! checktime")
     end,
 })
+
+vim.api.nvim_create_user_command("LspInfo", function()
+    vim.cmd("checkhealth lsp")
+end, {})
+
+vim.api.nvim_create_user_command("St", function()
+    vim.cmd("restart")
+end, {})

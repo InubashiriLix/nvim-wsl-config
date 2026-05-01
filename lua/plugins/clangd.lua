@@ -11,9 +11,9 @@ return {
                         "--clang-tidy",
                         "--header-insertion=iwyu",
                         "--completion-style=detailed",
-                        "--function-arg-placeholders",
+                        -- "--function-arg-placeholders=true",
                         "--fallback-style=llvm",
-                        "--query-driver=/usr/bin/g++,/usr/bin/c++,/usr/bin/*-g++,/usr/bin/*-gcc",
+                        -- "--query-driver=/home/inubashiri/.espressif/tools/**/riscv32-esp-elf-gcc,/home/inubashiri/.espressif/tools/**/xtensa-esp-elf-gcc",
                     },
                     cmd_env = {
                         LC_ALL = "C",

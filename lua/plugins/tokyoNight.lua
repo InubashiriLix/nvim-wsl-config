@@ -1,4 +1,4 @@
-vim.g.tokyonight_transparent = false
+vim.g.tokyonight_transparent = true
 
 function vim.g.toggle_tokyonight_transparent()
     vim.g.tokyonight_transparent = not vim.g.tokyonight_transparent
