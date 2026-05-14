@@ -27,7 +27,7 @@ end, { desc = "Sidekick NES Disable" })
 
 -- enable and disable theme (I use tokyonight now) transparent
 
-vim.keymap.set("n", "<leader>u", function()
+vim.keymap.set("n", "<leader>uu", function()
     local current_state = vim.g.toggle_tokyonight_transparent()
     vim.cmd("colorscheme tokyonight") -- update the colorscheme to apply the change
     vim.notify("Tokyonight transparent mode" .. (current_state and " enabled" or " disabled"), vim.log.levels.INFO, {
