@@ -2,6 +2,9 @@ return {
     {
         "neovim/nvim-lspconfig",
         opts = {
+            diagnostics = {
+                underline = false,
+            },
             servers = {
                 clangd = {
                     mason = true,
@@ -31,7 +34,7 @@ return {
     {
         "p00f/clangd_extensions.nvim",
         lazy = true,
-        config = function() end,
+        -- config = function() end,
         opts = {
             inlay_hints = {
                 inline = false,

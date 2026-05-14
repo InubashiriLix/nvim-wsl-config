@@ -30,3 +30,39 @@ end, {})
 vim.api.nvim_create_user_command("St", function()
     vim.cmd("restart")
 end, {})
+
+vim.api.nvim_create_user_command("ClangdHardRestart", function()
+    local cwd = vim.fn.getcwd()
+    local bufnr = vim.api.nvim_get_current_buf()
+
+    -- 1. 先停掉当前 clangd client
+    for _, client in ipairs(vim.lsp.get_clients({ name = "clangd" })) do
+        client:stop(true)
+    end
+
+    -- 2. 等 clangd 真的退出一小会，再删 cache
+    vim.defer_fn(function()
+        local paths = {
+            cwd .. "/.cache/clangd",
+            cwd .. "/build/.cache/clangd",
+            vim.fn.expand("~/.cache/clangd"),
+        }
+
+        for _, path in ipairs(paths) do
+            if vim.uv.fs_stat(path) then
+                vim.fn.delete(path, "rf")
+                print("Deleted: " .. path)
+            end
+        end
+
+        -- 3. 清掉当前 buffer 旧 diagnostic，避免看起来像没刷新
+        vim.diagnostic.reset(nil, bufnr)
+
+        -- 4. 重新启动 / 重新 attach clangd
+        vim.defer_fn(function()
+            vim.cmd("edit")
+            vim.cmd("lsp restart clangd")
+            print("clangd hard restarted")
+        end, 300)
+    end, 500)
+end, {})
