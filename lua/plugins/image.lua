@@ -23,6 +23,10 @@ return {
                     floating_windows = false,
                     filetypes = { "asciidoc", "adoc" },
                 },
+                orgmode = {
+                    enabled = true,
+                    filetypes = { "org" },
+                },
                 neorg = {
                     enabled = true,
                     filetypes = { "norg" },
