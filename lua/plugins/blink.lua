@@ -16,7 +16,33 @@ return {
     ---@type blink.cmp.Config
 
     opts = function(_, opts)
-        opts.keymap = vim.tbl_deep_extend("force", opts.keymap or {}, { preset = "super-tab" })
+        opts.keymap = vim.tbl_deep_extend("force", opts.keymap or {}, {
+            preset = "super-tab",
+            ["<Tab>"] = {
+                function(cmp)
+                    if cmp.snippet_active() then
+                        return cmp.accept()
+                    else
+                        return cmp.select_and_accept()
+                    end
+                end,
+                "snippet_forward",
+                "fallback",
+            },
+
+            ["<S-Tab>"] = {
+                "snippet_backward",
+                "fallback",
+            },
+
+            -- 单独用 Ctrl-y 接受 Copilot native / AI inline suggestion
+            ["<C-y>"] = {
+                function()
+                    return LazyVim.cmp.actions.ai_accept()
+                end,
+                "fallback",
+            },
+        })
 
         opts.appearance = vim.tbl_deep_extend("force", opts.appearance or {}, {
             -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
