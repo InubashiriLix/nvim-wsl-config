@@ -81,3 +81,29 @@ vim.keymap.set("n", "<leader><F7>", function()
         })
     end
 end, { desc = "CMake Close Executor" })
+
+-- Leave terminal-mode so the terminal buffer can be navigated like a normal buffer.
+vim.keymap.set("t", "<C-q>", "<cmd>stopinsert<cr>", { desc = "Terminal Normal Mode" })
+
+-- kill all the marks
+vim.keymap.set("n", "<leader>md", function()
+    vim.cmd("delmarks!")
+    vim.cmd("delmarks A-Z0-9")
+    vim.cmd("wshada!")
+end, { desc = "Delete all marks" })
+
+-- FUCK F1
+vim.keymap.set({ "n", "i", "v" }, "<F1>", "<Nop>", { silent = true })
+
+vim.keymap.set("n", "<leader>cb",
+    function()
+        require("blink.cmp").reload()
+        vim.notify('blink.cmp reloaded')
+    end,
+    { desc = "Reload blink.nvim cmp" }
+)
+
+vim.keymap.set("n", "<leader><F1><F1>", "<cmd>AmbientToggle<CR>", { desc = "Ambient Toggle", icon = "🎵+" })
+vim.keymap.set("n", "<leader><F1>j", "<cmd>AmbientNext<CR>", { desc = "Ambient Next", icon = "⏭️" })
+vim.keymap.set("n", "<leader><F1>k", "<cmd>AmbientStop<CR>", { desc = "Ambient Stop", icon = "⏹️" })
+vim.keymap.set("n", "<leader><F1>l", "<cmd>AmbientProgressToggle<CR>", { desc = "Ambient Progress Toggle", icon = "📊" })
