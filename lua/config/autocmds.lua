@@ -66,3 +66,89 @@ vim.api.nvim_create_user_command("ClangdHardRestart", function()
         end, 300)
     end, 500)
 end, {})
+
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "teal",
+    callback = function(ev)
+        vim.bo[ev.buf].commentstring = "-- %s"
+    end,
+    desc = "Set Teal comment string",
+})
+
+vim.api.nvim_create_user_command("CheckIkunBalance", function()
+    -- call the system application in the /usr/bin/check_ikun_balance_with_session
+    ---@param out vim.SystemCompleted
+    local on_complete = function(out)
+        if out.code ~= 0 then
+            vim.notify("Check Error: \n" .. out.stderr, vim.log.levels.ERROR, {
+                title = "Check Ikun Balance",
+            })
+        else
+            vim.notify("Check Result: \n" .. out.stdout, vim.log.levels.INFO, {
+                title = "Check Ikun Balance",
+            })
+        end
+    end
+
+    vim.system({ "check_ikun_balance_with_session" }, { text = true }, on_complete)
+end, {})
+
+vim.api.nvim_create_user_command("TypstCompile", function()
+    -- get current buffer's file extension
+    local cur_buf_ext = vim.fn.expand("%:e")
+    -- vim.notify("Calling TypstCompile: Current buffer extension: " .. cur_buf_ext, vim.log.levels.DEBUG)
+
+    -- get current buffer's file path
+    local cur_buf_path = vim.fn.expand("%:p")
+    -- vim.notify("Calling TypstCompile: Current buffer path: " .. cur_buf_path, vim.log.levels.DEBUG)
+
+    -- get current buffer's file name without extension
+    local cur_buf_name = vim.fn.expand("%:t:r")
+    -- vim.notify("Calling TypstCompile: Current buffer name: " .. cur_buf_name, vim.log.levels.DEBUG)
+
+    -- confirm whether there is a execuatable "typst"
+    if vim.fn.executable("typst") == 0 then
+        vim.notify("Typst is not installed", vim.log.levels.ERROR)
+        return
+    end
+
+    -- check if the current buffer is a typst file
+    if cur_buf_ext ~= "typ" then
+        vim.notify("Current buffer is not a typst file", vim.log.levels.ERROR)
+        return
+    end
+
+    -- use cur buf's path and name to construct the output path
+    local output_dir = vim.fn.expand("%:p:r") .. ".pdf"
+    -- callback function
+    ---@param out vim.SystemCompleted
+    local on_complete = function(out)
+        if out.code ~= 0 then
+            vim.notify("Typst Compile Error: \n" .. out.stderr, vim.log.levels.ERROR, {
+                title = "Typst Compile",
+            })
+        else
+            vim.notify("Typst Compile Success: code " .. out.code, vim.log.levels.INFO, {
+                title = "Typst Compile",
+            })
+        end
+    end
+
+    -- use typst compile to compile the current buffer
+    vim.system({ "typst", "compile", cur_buf_path, output_dir }, { text = true }, on_complete)
+end, {})
+
+-- 距离跑路还有多久
+vim.api.nvim_create_user_command("RunMan", function()
+    local input = vim.fn.input("Enter your sign off time in hh:mm format")
+    local hour = tonumber(string.sub(input, 1, 2))
+    local minute = tonumber(string.sub(input, 4, 5))
+    vim.notify("Sign off time is " .. hour .. ":" .. minute, vim.log.levels.INFO)
+    -- get current time:
+    local current_time = os.date("*t")
+    -- calculate the remaining time:
+    local remaining_time = hour * 60 + minute - current_time.hour * 60 - current_time.min
+    local remain_hour, remain_minute = math.floor(remaining_time / 60), math.floor(remaining_time % 60)
+    vim.notify("Remaining time is " .. remain_hour .. ":" .. remain_minute, vim.log.levels.INFO)
+end, {})

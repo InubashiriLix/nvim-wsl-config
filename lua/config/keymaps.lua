@@ -103,7 +103,13 @@ vim.keymap.set("n", "<leader>cb",
     { desc = "Reload blink.nvim cmp" }
 )
 
-vim.keymap.set("n", "<leader><F1><F1>", "<cmd>AmbientToggle<CR>", { desc = "Ambient Toggle", icon = "🎵+" })
-vim.keymap.set("n", "<leader><F1>j", "<cmd>AmbientNext<CR>", { desc = "Ambient Next", icon = "⏭️" })
-vim.keymap.set("n", "<leader><F1>k", "<cmd>AmbientStop<CR>", { desc = "Ambient Stop", icon = "⏹️" })
-vim.keymap.set("n", "<leader><F1>l", "<cmd>AmbientProgressToggle<CR>", { desc = "Ambient Progress Toggle", icon = "📊" })
+vim.keymap.set("n", "<leader><F1><F1>", "<cmd>Ambient toggle pause<CR>", { desc = "Ambient Toggle" })
+vim.keymap.set("n", "<leader><F1>i", "<cmd>Ambient toggle stop<CR>", { desc = "Ambient Toggle" })
+vim.keymap.set("n", "<leader><F1>j", "<cmd>Ambient next<CR>", { desc = "Ambient Next" })
+vim.keymap.set("n", "<leader><F1>k", "<cmd>Ambient previous<CR>", { desc = "Ambient Previous" })
+vim.keymap.set("n", "<leader><F1>l", "<cmd>Ambient progress toggle<CR>", { desc = "Ambient Progress Toggle" })
+vim.keymap.set("n", "<leader><F1>;", "<cmd>Ambient select playlist<CR>", { desc = "Ambient Select Playlist" })
+vim.keymap.set("n", "<leader><F1>h", "<cmd>Ambient select current-playlist-music<CR>",
+    { desc = "Ambient select current playlist" })
+
+vim.keymap.set("n", "<leader><F1><leader>", "<cmd>CheckIkunBalance<CR>", { desc = "Check IkunCode Balance Status" })

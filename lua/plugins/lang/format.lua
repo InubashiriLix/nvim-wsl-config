@@ -11,6 +11,16 @@ return {
                 javascript = { "prettierd", "prettier" },
                 typescript = { "prettierd", "prettier" },
                 json = { "prettierd", "prettier" },
+                -- teal
+                teal = { "cerulean" },
+            },
+
+            formatters = {
+                cerulean = {
+                    command = vim.fn.expand("~/.luarocks/bin/ceru"),
+                    args = { "-" },
+                    stdin = true,
+                },
             },
         },
     },
