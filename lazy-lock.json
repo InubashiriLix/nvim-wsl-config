@@ -89,5 +89,6 @@
   "vimcdoc": { "branch": "master", "commit": "81b49a67aa3dc1c170463d875c0a34598f9e1b4d" },
   "vimtex": { "branch": "master", "commit": "853eb587873a7061a083655578be56dd8027b834" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
+  "xmake.nvim": { "branch": "main", "commit": "c987ceca234fb3733a871605cf3e244ce256b4c4" },
   "yanky.nvim": { "branch": "main", "commit": "dd6689fdda85f66cab7d9b1a1664625f3be0920d" }
 }

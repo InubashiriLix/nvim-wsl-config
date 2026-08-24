@@ -152,3 +152,7 @@ vim.api.nvim_create_user_command("RunMan", function()
     local remain_hour, remain_minute = math.floor(remaining_time / 60), math.floor(remaining_time % 60)
     vim.notify("Remaining time is " .. remain_hour .. ":" .. remain_minute, vim.log.levels.INFO)
 end, {})
+
+vim.api.nvim_create_user_command("Shit", function()
+    vim.notify("Shit", vim.log.levels.INFO)
+end, {})

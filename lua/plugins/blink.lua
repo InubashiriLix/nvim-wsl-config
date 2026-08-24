@@ -34,8 +34,9 @@ return {
             },
 
             ["<C-y>"] = {
-                "select_and_accept",
-                "fallback",
+                -- note: no, cause I have use supermaven to accept the inline completion
+                -- "select_and_accept",
+                -- "fallback",
             },
         })
 
