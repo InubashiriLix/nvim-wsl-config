@@ -111,6 +111,8 @@ vim.keymap.set("n", "<leader><F1>l", "<cmd>Ambient progress toggle<CR>", { desc 
 vim.keymap.set("n", "<leader><F1>;", "<cmd>Ambient select playlist<CR>", { desc = "Ambient Select Playlist" })
 vim.keymap.set("n", "<leader><F1>h", "<cmd>Ambient select current-playlist-music<CR>",
     { desc = "Ambient select current playlist" })
+vim.keymap.set("n", "<leader><F1>]", "<cmd>Ambient volume up<CR>", { desc = "Ambient Volume Up" })
+vim.keymap.set("n", "<leader><F1>[", "<cmd>Ambient volume down<CR>", { desc = "Ambient Volume Down" })
 
 vim.keymap.set("n", "<leader><F1><leader>", "<cmd>CheckIkunBalance<CR>", { desc = "Check IkunCode Balance Status" })
 
