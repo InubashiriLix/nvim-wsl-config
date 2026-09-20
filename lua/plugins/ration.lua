@@ -1,5 +1,6 @@
 return {
-    dir = "/home/inubashiri/proj/neovim-plugin/ration.nvim",
+    "InubashiriLix/ration.nvim",
+    -- dir = "/home/inubashiri/proj/neovim-plugin/ration.nvim",
     dependencies = { "MunifTanjim/nui.nvim" },
     build = "cargo build --release -p ration-nvim",
     config = function()

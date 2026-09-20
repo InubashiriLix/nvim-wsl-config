@@ -1,6 +1,6 @@
 return {
-    -- "InubashiriLix/TodoAnxiety.nvim",
-    dir = "/home/inubashiri/proj/neovim-plugin/TodoAnxiety.nvim",
+    "InubashiriLix/TodoAnxiety.nvim",
+    -- dir = "/home/inubashiri/proj/neovim-plugin/TodoAnxiety.nvim",
     dependencies = {
         "kkharji/sqlite.lua",
         "MunifTanjim/nui.nvim",
