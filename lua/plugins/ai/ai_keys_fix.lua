@@ -1,38 +1,120 @@
--- lua/plugins/ai-keys-fix.lua
+-- lua/plugins/ai/ai_keys_fix.lua
 return {
     -- Avante：统一用 <leader>ac，禁用它的 <leader>aa
     {
         "yetone/avante.nvim",
         keys = {
             { "<leader>aa", false, mode = { "n", "x" } },
-            { "<leader>ac", "<cmd>AvanteAsk<CR>", desc = "Ask Avante", mode = { "n", "x" } },
+            { "<leader>acc", "<cmd>AvanteAsk<CR>", desc = "Ask Avante", mode = { "n", "x" } },
+
+            { "<leader>ac", false, mode = { "n", "x" } },
+            { "<leader>aca", "<cmd>AvanteChat<CR>", desc = "Chat with Avante", mode = { "n", "x" } },
+
+            { "<leader>ae", false, mode = { "n", "x" } },
+            { "<leader>ace", "<cmd>AvanteEdit<CR>", desc = "Edit Avante", mode = { "n", "x" } },
+
+            { "<leader>af", false, mode = { "n", "x" } },
+            { "<leader>acf", "<cmd>AvanteFocus<CR>", desc = "Focus Avante", mode = { "n", "x" } },
+
+            { "<leader>ah", false, mode = { "n", "x" } },
+            { "<leader>ach", "<cmd>AvanteHistory<CR>", desc = "Avante History", mode = { "n", "x" } },
+
+            { "<leader>am", false, mode = { "n", "x" } },
+            { "<leader>acm", "<cmd>AvanteModels<CR>", desc = "Select Avante Model", mode = { "n", "x" } },
+
+            { "<leader>an", false, mode = { "n", "x" } },
+            { "<leader>acn", "<cmd>AvanteChatNew<CR>", desc = "New Avante Chat", mode = { "n", "x" } },
+
+            { "<leader>ap", false, mode = { "n", "x" } },
+            { "<leader>acp", "<cmd>AvanteSwitchProvider<CR>", desc = "Switch Avante Provider", mode = { "n", "x" } },
+
+            { "<leader>ar", false, mode = { "n", "x" } },
+            { "<leader>acr", "<cmd>AvanteRefresh<CR>", desc = "Refresh Avante", mode = { "n", "x" } },
+
+            { "<leader>as", false, mode = { "n", "x" } },
+            { "<leader>acs", "<cmd>AvanteStop<CR>", desc = "Stop Avante", mode = { "n", "x" } },
+
+            { "<leader>at", false, mode = { "n", "x" } },
+            { "<leader>act", "<cmd>AvanteToggle<CR>", desc = "Toggle Avante", mode = { "n", "x" } },
         },
     },
 
-    -- Sidekick：只在 Normal/Visual 模式映射；先删掉任何插入模式的残留映射
     {
         "folke/sidekick.nvim",
         init = function()
-            pcall(vim.keymap.del, "i", "<Space>ai") -- 清理旧映射
+            pcall(vim.keymap.del, "i", "<Space>ai")  -- 清理旧映射
             pcall(vim.keymap.del, "i", "<leader>ai") -- 以防有插件按 <leader> 记录
             pcall(vim.keymap.del, "t", "<leader>ai")
         end,
         keys = {
             { "<leader>aa", false, mode = { "n", "x" } }, -- 不让 sidekick 抢占 aa
+            { "<leader>ad", false, mode = { "n", "x" } },
             {
-                "<leader>ai",
+                -- aad 已用于禁用 NES，使用 aax 分离 CLI 会话。
+                "<leader>aax",
+                function()
+                    require("sidekick.cli").close()
+                end,
+                desc = "Detach a CLI Session",
+                mode = { "n", "x" },
+            },
+            {
+                "<leader>aai",
                 function()
                     require("sidekick.cli").toggle()
                 end,
                 desc = "Sidekick Toggle CLI",
                 mode = { "n", "x" },
             },
-            -- 如果你真想插入模式也能触发，建议别用空格前缀，换成不影响打字的序列（示例，默认禁用）：
-            -- { ";;i", function()
-            --     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", false)
-            --     require("sidekick.cli").toggle()
-            --   end,
-            --   mode = "i", desc = "Sidekick Toggle (insert, ';;i')" },
+            {
+                "<leader>aaf",
+                function()
+                    require("sidekick.cli").focus()
+                end,
+                desc = "Sidekick Focus CLI",
+                mode = { "n", "x" },
+            },
+            {
+                "<leader>aah",
+                function()
+                    require("sidekick.cli").hide()
+                end,
+                desc = "Sidekick Hide CLI",
+                mode = { "n", "x" },
+            },
+            {
+                -- we use this to trigger the prompt panel in the normal mode
+                "<leader>aao",
+                function()
+                    require("sidekick.cli").prompt()
+                end,
+                desc = "Sidekick Open Prompt Panel",
+                mode = { "n", "x" },
+            },
+            {
+                "<leader>aas",
+                function()
+                    vim.cmd("Sidekick nes enable")
+                    vim.notify("Sidekick NES enabled", vim.log.levels.INFO, {
+                        title = "Sidekick",
+                        icon = "🤖",
+                    })
+                end,
+                desc = "Sidekick NES Enable",
+                mode = { "n", "x" },
+            },
+            {
+                "<leader>aad",
+                function()
+                    vim.cmd("Sidekick nes disable")
+                    vim.notify("Sidekick NES disabled", vim.log.levels.INFO, {
+                        title = "Sidekick",
+                        icon = "🛑",
+                    })
+                end,
+                desc = "Sidekick NES Disable",
+                mode = { "n", "x" },
+            }
         },
 
         opts = {

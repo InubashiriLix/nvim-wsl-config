@@ -32,4 +32,10 @@ return {
             }
         end,
     },
+    {
+        "arturgoms/moonbow.nvim",
+        lazy = false,
+        priority = 800,
+    }
+
 }

@@ -1,7 +1,7 @@
 {
   "LazyVim": { "branch": "main", "commit": "c10948c50b18fae7f256433afdef09e432410480" },
   "SchemaStore.nvim": { "branch": "main", "commit": "9f98b46e1dd61aeb666989c344d76517df63af55" },
-  "ambient.nvim": { "branch": "main", "commit": "d5b9e3f83f5603b8317447a23da065be896dc495" },
+  "ambient.nvim": { "branch": "main", "commit": "2e6f28baee4a11c39adb6e39924ff616e6cf5935" },
   "async.nvim": { "branch": "main", "commit": "46adf61a022d5c923f981d527443f406e7d0f63e" },
   "avante.nvim": { "branch": "main", "commit": "8a5a5c16a3c693bf7d9a8da1ee78269e8728879b" },
   "blink-cmp-avante": { "branch": "master", "commit": "4f494c6e124acbe31a8f5d58effa0c14aa38a6d5" },
@@ -39,6 +39,7 @@
   "mini.indentscope": { "branch": "main", "commit": "92fbaf895f83c59575ec599df532b297ebf62b14" },
   "mini.pairs": { "branch": "main", "commit": "b1c5a726921b7a8c9321e9a7a208aa0571de5810" },
   "mini.surround": { "branch": "main", "commit": "8d5d0c5aa92449368ac251e85451d79d8f69d296" },
+  "moonbow.nvim": { "branch": "master", "commit": "baf62d035785910c5a368cbde5872190a56afb30" },
   "neo-tree.nvim": { "branch": "main", "commit": "2b9e60152b606152467441b0a74879f41707fd96" },
   "neogen": { "branch": "main", "commit": "23e7e9f883d01289ebd90e98025acc860ea26366" },
   "neorg": { "branch": "main", "commit": "d4dd8979c1129b5251d5565164f54d1cc258e92a" },

@@ -9,21 +9,21 @@ vim.keymap.set("i", "kk", "<Esc>", { noremap = true, silent = true, desc = "Exit
 vim.keymap.set("i", "kj", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode" })
 
 -- vim.keymap.set("n", "<leader>ai", "<cmd>sidekick cli toggle<CR>", { desc = "Sidekick Toggle" })
-vim.keymap.set("n", "<leader>aso", function()
-    vim.cmd("Sidekick nes enable")
-    vim.notify("Sidekick NES enabled", vim.log.levels.INFO, {
-        title = "Sidekick",
-        icon = "🤖",
-    })
-end, { desc = "Sidekick NES Enable" })
-
-vim.keymap.set("n", "<leader>asd", function()
-    vim.cmd("Sidekick nes disable")
-    vim.notify("Sidekick NES disabled", vim.log.levels.INFO, {
-        title = "Sidekick",
-        icon = "🛑",
-    })
-end, { desc = "Sidekick NES Disable" })
+-- vim.keymap.set("n", "<leader>aso", function()
+--     vim.cmd("Sidekick nes enable")
+--     vim.notify("Sidekick NES enabled", vim.log.levels.INFO, {
+--         title = "Sidekick",
+--         icon = "🤖",
+--     })
+-- end, { desc = "Sidekick NES Enable" })
+--
+-- vim.keymap.set("n", "<leader>asd", function()
+--     vim.cmd("Sidekick nes disable")
+--     vim.notify("Sidekick NES disabled", vim.log.levels.INFO, {
+--         title = "Sidekick",
+--         icon = "🛑",
+--     })
+-- end, { desc = "Sidekick NES Disable" })
 
 -- enable and disable theme (I use tokyonight now) transparent
 

@@ -67,19 +67,18 @@ local opts = {
     enable = true,
     recursive_depth = 2,
     music_dirs = {
+        "~/Music/Ambient.nvim/albums/Casualities: Unknown/",
         "~/Music/Ambient.nvim/default/",
         "~/Music/Ambient.nvim/albums/In the Usual Motion/",
         "~/Music/Ambient.nvim/albums/In the Unusual Motion/",
         "~/Music/Ambient.nvim/albums/Signalis/",
         "~/Music/Ambient.nvim/albums/Necrophobia/",
-        "~/Music/Ambient.nvim/albums/Casualities: Unknown/"
-
     },
     mode = "continuous",
     volume = 80,
     progress = progress,
     track_popup = {
-        enabled = true,
+        enabled = false,
         position = "bottom_left",
         duratoin_ms = 5000,
         width = 38,
