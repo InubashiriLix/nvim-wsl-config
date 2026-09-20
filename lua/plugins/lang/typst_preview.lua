@@ -9,7 +9,7 @@ return {
         },
         keys = {
             { "<leader>tp", "<cmd>TypstPreviewToggle<cr>", desc = "Typst Preview Toggle" },
-            { "<leader>ts", "<cmd>TypstPreviewStop<cr>", desc = "Typst Preview Stop" },
+            { "<leader>ts", "<cmd>TypstPreviewStop<cr>",   desc = "Typst Preview Stop" },
         },
     },
 }
