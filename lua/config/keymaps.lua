@@ -8,25 +8,8 @@ vim.keymap.set("i", "jj", "<Esc>", { noremap = true, silent = true, desc = "Exit
 vim.keymap.set("i", "kk", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode" })
 vim.keymap.set("i", "kj", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode" })
 
--- vim.keymap.set("n", "<leader>ai", "<cmd>sidekick cli toggle<CR>", { desc = "Sidekick Toggle" })
--- vim.keymap.set("n", "<leader>aso", function()
---     vim.cmd("Sidekick nes enable")
---     vim.notify("Sidekick NES enabled", vim.log.levels.INFO, {
---         title = "Sidekick",
---         icon = "🤖",
---     })
--- end, { desc = "Sidekick NES Enable" })
---
--- vim.keymap.set("n", "<leader>asd", function()
---     vim.cmd("Sidekick nes disable")
---     vim.notify("Sidekick NES disabled", vim.log.levels.INFO, {
---         title = "Sidekick",
---         icon = "🛑",
---     })
--- end, { desc = "Sidekick NES Disable" })
 
 -- enable and disable theme (I use tokyonight now) transparent
-
 vim.keymap.set("n", "<leader>uu", function()
     local current_state = vim.g.toggle_tokyonight_transparent()
     vim.cmd("colorscheme tokyonight") -- update the colorscheme to apply the change
@@ -35,52 +18,6 @@ vim.keymap.set("n", "<leader>uu", function()
         icon = "🎨",
     })
 end, { desc = "Toggle Tokyonight Theme" })
-
-vim.keymap.set("n", "<leader><F5>", function()
-    -- find is current dir contains any CMakeLists.txt file
-    local handle = io.popen("find . -maxdepth 3 -name 'CMakeLists.txt'")
-    -- if have, then can run the CMakeBuild Command
-    if handle:read("*a") ~= "" then
-        vim.cmd("CMakeBuild")
-        vim.notify("CMake Build executed", vim.log.levels.INFO, {
-            title = "CMake",
-            icon = "🛠️",
-        })
-    else
-        vim.notify("No CMakeLists.txt found in current directory", vim.log.levels.WARN, {
-            title = "CMake-Tools",
-            icon = "⚠️",
-        })
-    end
-end, { desc = "CMakeRun Current Proj" })
-
-vim.keymap.set("n", "<leader><F6>", function()
-    -- find is current dir contains any CMakeLists.txt file
-    local handle = io.popen("find . -maxdepth 3 -name 'CMakeLists.txt'")
-    -- if have, then can run the CMakeBuild Command
-    if handle:read("*a") ~= "" then
-        vim.cmd("CMakeRun")
-    else
-        vim.notify("No CMakeLists.txt found in current directory", vim.log.levels.WARN, {
-            title = "CMake-Tools",
-            icon = "⚠️",
-        })
-    end
-end, { desc = "CMakeRun Current Proj" })
-
-vim.keymap.set("n", "<leader><F7>", function()
-    -- find is current dir contains any CMakeLists.txt file
-    local handle = io.popen("find . -maxdepth 3 -name 'CMakeLists.txt'")
-    -- if have, then can run the CMakeBuild Command
-    if handle:read("*a") ~= "" then
-        vim.cmd("CMakeRunCurrentFile")
-    else
-        vim.notify("No CMakeLists.txt found in current directory", vim.log.levels.WARN, {
-            title = "CMake-Tools",
-            icon = "⚠️",
-        })
-    end
-end, { desc = "CMake Close Executor" })
 
 -- Leave terminal-mode so the terminal buffer can be navigated like a normal buffer.
 vim.keymap.set("t", "<C-q>", "<cmd>stopinsert<cr>", { desc = "Terminal Normal Mode" })
@@ -102,31 +39,3 @@ vim.keymap.set("n", "<leader>cb",
     end,
     { desc = "Reload blink.nvim cmp" }
 )
-
-vim.keymap.set("n", "<leader><F1><F1>", "<cmd>Ambient toggle pause<CR>", { desc = "Ambient Toggle" })
-vim.keymap.set("n", "<leader><F1>i", "<cmd>Ambient toggle stop<CR>", { desc = "Ambient Toggle" })
-vim.keymap.set("n", "<leader><F1>j", "<cmd>Ambient next<CR>", { desc = "Ambient Next" })
-vim.keymap.set("n", "<leader><F1>k", "<cmd>Ambient previous<CR>", { desc = "Ambient Previous" })
-vim.keymap.set("n", "<leader><F1>l", "<cmd>Ambient progress toggle<CR>", { desc = "Ambient Progress Toggle" })
-vim.keymap.set("n", "<leader><F1>;", "<cmd>Ambient select playlist<CR>", { desc = "Ambient Select Playlist" })
-vim.keymap.set("n", "<leader><F1>h", "<cmd>Ambient select current-playlist-music<CR>",
-    { desc = "Ambient select current playlist" })
-vim.keymap.set("n", "<leader><F1>]", "<cmd>Ambient volume up<CR>", { desc = "Ambient Volume Up" })
-vim.keymap.set("n", "<leader><F1>[", "<cmd>Ambient volume down<CR>", { desc = "Ambient Volume Down" })
-
-vim.keymap.set("n", "<leader><F1><leader>", "<cmd>CheckIkunBalance<CR>", { desc = "Check IkunCode Balance Status" })
-
-
--- the xmake mapping
--- vim.keymap.set("n", "<leader>m", { desc = "+xmake" })
-vim.keymap.set("n", "<leader>mb", "<cmd>Xmake build<CR>", { desc = "Xmake build" })
-vim.keymap.set("n", "<leader>mc", "<cmd>Xmake clean<CR>", { desc = "Xmake clean" })
-vim.keymap.set("n", "<leader>mr", "<cmd>Xmake run<CR>", { desc = "Xmake run" })
-vim.keymap.set("n", "<leader>mD", "<cmd>Xmake debug<CR>", { desc = "Xmake debug" })
-vim.keymap.set("n", "<leader>mR", "<cmd>Xmake run all<CR>", { desc = "Xmake run all" })
-vim.keymap.set("n", "<leader>mm", "<cmd>Xmake mode<CR>", { desc = "Xmake set mode" })
-vim.keymap.set("n", "<leader>mp", "<cmd>Xmake select platform<CR>", { desc = "Xmake sel platform" })
-vim.keymap.set("n", "<leader>ma", "<cmd>Xmake select arch<CR>", { desc = "Xmake sel arch" })
-vim.keymap.set("n", "<leader>mt", "<cmd>Xmake select toolchain<CR>", { desc = "Xmake sel toolchain" })
-
-vim.keymap.set("n", "<leader>tm", "<cmd>Shit<CR>", { desc = "Shit" })

@@ -1,3 +1,15 @@
+-- the Ambient key mappings
+vim.keymap.set("n", "<leader><F1><F1>", "<cmd>Ambient toggle pause<CR>", { desc = "Ambient Toggle" })
+vim.keymap.set("n", "<leader><F1>i", "<cmd>Ambient toggle stop<CR>", { desc = "Ambient Toggle" })
+vim.keymap.set("n", "<leader><F1>j", "<cmd>Ambient next<CR>", { desc = "Ambient Next" })
+vim.keymap.set("n", "<leader><F1>k", "<cmd>Ambient previous<CR>", { desc = "Ambient Previous" })
+vim.keymap.set("n", "<leader><F1>l", "<cmd>Ambient progress toggle<CR>", { desc = "Ambient Progress Toggle" })
+vim.keymap.set("n", "<leader><F1>;", "<cmd>Ambient select playlist<CR>", { desc = "Ambient Select Playlist" })
+vim.keymap.set("n", "<leader><F1>h", "<cmd>Ambient select current-playlist-music<CR>",
+    { desc = "Ambient select current playlist" })
+vim.keymap.set("n", "<leader><F1>]", "<cmd>Ambient volume up<CR>", { desc = "Ambient Volume Up" })
+vim.keymap.set("n", "<leader><F1>[", "<cmd>Ambient volume down<CR>", { desc = "Ambient Volume Down" })
+
 ---@type AmbientProgressConfig
 local progress = {
     enabled = true,

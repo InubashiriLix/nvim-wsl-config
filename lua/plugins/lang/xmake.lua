@@ -1,3 +1,15 @@
+-- the xmake mapping
+-- vim.keymap.set("n", "<leader>m", { desc = "+xmake" })
+vim.keymap.set("n", "<leader>mb", "<cmd>Xmake build<CR>", { desc = "Xmake build" })
+vim.keymap.set("n", "<leader>mc", "<cmd>Xmake clean<CR>", { desc = "Xmake clean" })
+vim.keymap.set("n", "<leader>mr", "<cmd>Xmake run<CR>", { desc = "Xmake run" })
+vim.keymap.set("n", "<leader>mD", "<cmd>Xmake debug<CR>", { desc = "Xmake debug" })
+vim.keymap.set("n", "<leader>mR", "<cmd>Xmake run all<CR>", { desc = "Xmake run all" })
+vim.keymap.set("n", "<leader>mm", "<cmd>Xmake mode<CR>", { desc = "Xmake set mode" })
+vim.keymap.set("n", "<leader>mp", "<cmd>Xmake select platform<CR>", { desc = "Xmake sel platform" })
+vim.keymap.set("n", "<leader>ma", "<cmd>Xmake select arch<CR>", { desc = "Xmake sel arch" })
+vim.keymap.set("n", "<leader>mt", "<cmd>Xmake select toolchain<CR>", { desc = "Xmake sel toolchain" })
+
 return {
     {
         "Mythos-404/xmake.nvim",
